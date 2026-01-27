@@ -1,23 +1,520 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+
+
+    <!-- Schema.org FAQ 구조화 데이터 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "스케일링 보험 적용 횟수 및 2026년 예상 비용은 얼마인가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "만 19세 이상 성인은 연 1회 건강보험 적용이 가능합니다. 2026년 기준 본인 부담금은 치과 종별에 따라 약 15,000원~20,000원대 초반으로 예상됩니다. 비급여 스케일링 비용은 치과마다 크게 달라지며, 본인의 잇몸 상태와 치석 양에 따라 추가 비용이 발생할 수 있습니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "스케일링과 잇몸 치료(치주 치료)의 차이점은 무엇인가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "스케일링은 치아 표면에 붙어있는 치석을 제거하는 예방적인 치료입니다. 반면 잇몸 치료(치주 치료)는 잇몸 속 깊은 곳까지 염증이나 치석이 진행된 경우에 진행하는 전문적인 치료입니다. 스케일링으로 해결되지 않는 심각한 잇몸 질환에는 치주 치료가 필요하며, 비용과 치료 과정이 더 복잡합니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "스케일링 비용을 절약할 수 있는 팁이 있나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "건강보험 적용 혜택(연 1회)을 놓치지 않고 이용하는 것이 가장 중요합니다. 또한 치과마다 비급여 가격이 다르므로, 여러 치과를 비교해보고 이벤트나 프로모션을 활용하면 비보험 스케일링 비용을 절약할 수 있습니다. 잇몸 건강을 미리 관리하여 치주 치료로 넘어가는 것을 예방하는 것이 장기적인 절약 팁입니다."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- 스타일: 부드럽고 다채로운 색, 타이틀 강조, 계층 구조 -->
+    <style>
+      :root {
+        --primary-color: #2A4D69; /* 진한 파란색 계열 */
+        --secondary-color: #4B86B4; /* 청록색 계열 */
+        --accent-color: #ADCBE3; /* 연한 하늘색 계열 */
+        --highlight-color: #E7EFF6; /* 아주 연한 회색/하늘색 */
+        --text-color: #2D3E50; /* 어두운 회색 */
+        --bg-light: #F0F4F8; /* 연한 배경 */
+        --bg-white: #ffffff;
+        --btn-color: #FF6F61; /* 주황색 계열 버튼 */
+        --btn-hover: #FF4F3B; /* 짙은 주황색 */
+      }
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+      body {
+        font-family: 'Noto Sans KR', sans-serif;
+        margin:0; padding:0;
+        background-color: var(--bg-light);
+        color: var(--text-color);
+        line-height:1.7;
+      }
+      .container {
+        max-width: 1000px;
+        margin:0 auto;
+        padding:0 20px;
+      }
+      header {
+        background-color: var(--primary-color);
+        padding: 30px 20px;
+        text-align: center;
+        color: var(--bg-white);
+      }
+      header h1 {
+        margin: 0;
+        font-size: 2.8em;
+        font-weight:700;
+      }
+      header h1 a {
+        color: var(--bg-white);
+        text-decoration: none;
+      }
+      .hero {
+        background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+        color: var(--bg-white);
+        text-align: center;
+        padding: 90px 20px;
+      }
+      .hero h1 {
+        font-size: 3.5em;
+        margin-bottom: 20px;
+        font-weight:700;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+      }
+      .hero p {
+        font-size: 1.4em;
+        margin-bottom: 35px;
+      }
+      .cta-btn {
+        background-color: var(--btn-color);
+        color: var(--bg-white);
+        padding: 18px 45px;
+        font-size:1.3em;
+        font-weight: bold;
+        border:none;
+        border-radius:50px;
+        cursor:pointer;
+        transition: background-color 0.3s, transform 0.2s;
+        text-decoration: none;
+        display: inline-block;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      }
+      .cta-btn:hover {
+        background-color: var(--btn-hover);
+        transform: translateY(-3px);
+      }
+      .form-box {
+        background-color: var(--bg-white);
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        margin-top: 30px;
+      }
+      .form-box h2 {
+        color: var(--primary-color);
+        text-align: center;
+        margin-bottom: 25px;
+        font-size:2em;
+      }
+      .form-box label {
+        display: block;
+        margin-bottom:8px;
+        font-weight:500;
+      }
+      .form-box input[type="text"], .form-box input[type="tel"], .form-box select {
+        width:100%;
+        padding:12px;
+        margin-bottom:20px;
+        border:1px solid #ccc;
+        border-radius:6px;
+        box-sizing:border-box;
+      }
+
+      .content-section {
+        margin-top: 40px;
+        background-color: var(--bg-white);
+        padding: 60px 0;
+        border-radius:10px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      }
+      .content-section h2 {
+        font-size: 2.8em;
+        color: var(--secondary-color);
+        margin-bottom:30px;
+        font-weight:700;
+        text-align:center;
+        border-bottom: 2px solid var(--accent-color);
+        padding-bottom: 10px;
+      }
+      .content-section h3 {
+        font-size:1.6em;
+        color: var(--primary-color);
+        margin-top:30px;
+        margin-bottom:15px;
+      }
+      .feature-grid {
+        display:flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top:30px;
+      }
+      .feature-grid .item {
+        width: calc(33.33% - 20px);
+        margin:10px;
+        padding:20px;
+        background-color: var(--highlight-color);
+        border-radius:8px;
+        text-align:center;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      }
+      .feature-grid .item img {
+        width:80px; height:80px;
+        margin-bottom:15px;
+      }
+      .keyword-list {
+        list-style:none;
+        padding:0;
+        display:flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top:30px;
+      }
+      .keyword-list li {
+        background-color: var(--secondary-color);
+        color: var(--bg-white);
+        padding:10px 20px;
+        margin:5px;
+        border-radius:20px;
+        font-weight:500;
+        transition: transform 0.2s;
+      }
+      .keyword-list li:hover {
+        transform: scale(1.05);
+      }
+      .faq-item {
+        border-bottom:1px solid #ddd;
+        padding:20px 0;
+      }
+      .faq-item h3 {
+        cursor:pointer;
+        display:flex;
+        justify-content: space-between;
+        align-items:center;
+        font-size:1.4em;
+        color: var(--primary-color);
+        font-weight: 500;
+      }
+      .faq-item h3::after {
+        content: '+';
+        font-size:1.5em;
+        color: var(--secondary-color);
+        transition: transform 0.3s;
+      }
+      .faq-item.active h3::after {
+        content: '-';
+        transform: rotate(180deg);
+      }
+      .faq-item p {
+        display: none;
+        padding-top:10px;
+        color:#555;
+        font-size:1.1em;
+      }
+      .faq-item.active p {
+        display: block;
+      }
+      footer {
+        background-color: var(--primary-color);
+        color: var(--bg-white);
+        text-align:center;
+        padding: 40px 20px;
+        font-size:0.9em;
+      }
+      footer a {
+        color: var(--bg-white);
+        text-decoration:none;
+        margin:0 10px;
+      }
+      footer a:hover {
+        text-decoration:underline;
+      }
+      .table-container {
+        overflow-x: auto;
+        margin-top: 20px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        background-color: var(--bg-white);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      }
+      th, td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+      }
+      th {
+        background-color: var(--secondary-color);
+        color: var(--bg-white);
+        font-weight: 500;
+      }
+      tr:nth-child(even) {
+        background-color: var(--highlight-color);
+      }
+
+      @media (max-width:768px) {
+        .hero h1 { font-size:2.4em; }
+        .hero p { font-size:1.2em; }
+        .cta-btn { padding:15px 30px; font-size:1.1em; }
+        .form-box { padding:25px; }
+        .content-section h2 { font-size:2.2em; }
+        .feature-grid .item { width:100%; margin:10px 0; }
+        .keyword-list li { margin:3px; font-size:0.9em; }
+      }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><a href="/">치과 스케일링 비용 정보센터</a></h1>
+        </div>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        <section class="hero">
+            <div class="container">
+                <h1>2026년 스케일링 비용, 더 이상 고민하지 마세요.</h1>
+                <p>보험 적용부터 비보험 가격까지, 정확한 치과 스케일링 견적을 비교하고 절약하는 방법을 알려드립니다.</p>
+                <div class="form-box">
+                    <h2>간편 스케일링 비용 견적 요청</h2>
+                    <p>간단한 설문을 통해 맞춤형 스케일링 비용과 치과 정보를 받아보세요.</p>
+                    <form action="#" method="post">
+                        <label for="name">이름</label>
+                        <input type="text" id="name" name="name" placeholder="이름을 입력하세요" required>
+
+                        <label for="phone">연락처</label>
+                        <input type="tel" id="phone" name="phone" placeholder="휴대폰 번호를 입력하세요" required>
+
+                        <label for="region">거주 지역</label>
+                        <input type="text" id="region" name="region" placeholder="예: 서울 강남구" required>
+
+                        <label for="type">희망 스케일링 종류</label>
+                        <select id="type" name="type" required>
+                            <option value="">선택하세요</option>
+                            <option value="insurance">보험 스케일링 (1년에 1회)</option>
+                            <option value="non-insurance">비보험 스케일링 (횟수 무관)</option>
+                            <option value="deep-scaling">심층 스케일링/잇몸 치료</option>
+                        </select>
+
+                        <label for="symptom">특이 증상</label>
+                        <input type="text" id="symptom" name="symptom" placeholder="예: 잇몸 출혈, 시린 증상 등">
+
+                        <button type="submit" class="cta-btn">맞춤 견적 받기</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <h2>왜 스케일링이 중요하고, 비용을 비교해야 할까요?</h2>
+                <p>스케일링은 치과 치료 중 가장 기본적인 예방 치료입니다. 치아 표면과 잇몸 경계 부위에 쌓인 치석은 잇몸 염증을 유발하여 치주염으로 발전합니다. 치주염은 대한민국 성인의 절반 이상이 겪는 질환으로, 심해질 경우 치아를 잃을 수도 있습니다. 정기적인 스케일링은 이러한 치주 질환을 예방하고 구강 건강을 유지하는 핵심입니다. </p>
+
+                <div class="feature-grid">
+                    <div class="item">
+                        <img src="https://via.placeholder.com/80/2A4D69/fff?text=ICON1" alt="치석 제거 아이콘">
+                        <h3>치석 제거 및 예방</h3>
+                        <p>칫솔질로 제거되지 않는 단단한 치석을 제거하여 충치와 잇몸 염증을 예방합니다. 특히 치아와 잇몸 사이의 치주 포켓에 쌓인 치석은 반드시 제거해야 합니다.</p>
+                    </div>
+                    <div class="item">
+                        <img src="https://via.placeholder.com/80/2A4D69/fff?text=ICON2" alt="잇몸 건강 아이콘">
+                        <h3>잇몸 건강 유지</h3>
+                        <p>스케일링 후 잇몸 출혈이 멈추고 잇몸이 단단해지는 효과를 볼 수 있습니다. 치과 정기 검진을 통해 잇몸 상태를 확인하고 치주 질환을 조기에 발견할 수 있습니다.</p>
+                    </div>
+                    <div class="item">
+                        <img src="https://via.placeholder.com/80/2A4D69/fff?text=ICON3" alt="구취 개선 아이콘">
+                        <h3>구취 개선 및 미백 효과</h3>
+                        <p>치석과 세균 덩어리는 구취의 주범입니다. 스케일링을 통해 구취를 개선하고, 치아 표면의 착색을 일부 제거하여 미백 효과도 기대할 수 있습니다.</p>
+                    </div>
+                </div>
+
+                <h3 style="margin-top:50px;">함께 많이 찾는 키워드</h3>
+                <ul class="keyword-list">
+                    <li>#스케일링비용</li>
+                    <li>#스케일링가격</li>
+                    <li>#치과스케일링</li>
+                    <li>#보험스케일링</li>
+                    <li>#비보험스케일링</li>
+                    <li>#스케일링잘하는곳</li>
+                    <li>#스케일링후기</li>
+                    <li>#스케일링주기</li>
+                    <li>#치석제거비용</li>
+                    <li>#잇몸치료가격</li>
+                    <li>#스케일링통증</li>
+                    <li>#스케일링내돈내산</li>
+                    <li>#치과비교</li>
+                    <li>#2026스케일링비용</li>
+                    <li>#스케일링평균가격</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <h2>스케일링 비용, 보험 vs 비보험 상세 비교 (2026년 기준)</h2>
+                <p>스케일링 비용은 건강보험 적용 여부에 따라 크게 달라집니다. 특히 2026년에는 보험 적용 기준 및 본인 부담금에 대한 정확한 이해가 필수입니다. 아래 표를 통해 자세한 내용을 확인하세요.</p>
+
+                <h3>1. 건강보험 스케일링 (연 1회)</h3>
+                <p>만 19세 이상 대한민국 국민이라면 누구나 연 1회 보험 혜택을 받을 수 있습니다. 이는 치주 질환 예방을 위한 국가의 필수 의료 서비스로, 본인 부담금만 지불하면 됩니다. 2026년에도 이 제도는 유지되며, 치과 의원 기준 평균 1만 5천 원 내외의 저렴한 금액으로 스케일링을 받을 수 있습니다. 이는 치석이 많이 쌓이는 치주 질환 위험군을 위한 제도입니다.</p>
+
+                <h3>2. 비보험 스케일링 및 추가 치료</h3>
+                <p>보험 적용 횟수(연 1회)를 초과하여 스케일링을 받거나, 치주 질환의 심각성 때문에 '심층 스케일링(Root Planing)' 또는 '치주 치료'가 필요할 경우 비보험으로 진행됩니다. 비보험 스케일링의 평균 가격은 치과마다 천차만별입니다. 특히, 치과가 위치한 지역(강남, 일산, 부산 등)이나 병원 규모, 사용하는 장비(예: 에어플로우 장비)에 따라 가격 차이가 크게 발생합니다.</p>
+
+                <div class="table-container">
+                    <table>
+                        <caption>2026년 스케일링 예상 비용 비교표</caption>
+                        <thead>
+                            <tr>
+                                <th>구분</th>
+                                <th>건강보험 스케일링</th>
+                                <th>비보험 스케일링</th>
+                                <th>심층 스케일링 (잇몸 치료)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>적용 대상</td>
+                                <td>만 19세 이상 국민 (연 1회)</td>
+                                <td>보험 횟수 초과자 또는 심미 목적</td>
+                                <td>치주 질환이 진행된 환자 (부분/전체)</td>
+                            </tr>
+                            <tr>
+                                <td>2026년 예상 비용 (본인 부담금)</td>
+                                <td>약 15,000원 ~ 20,000원</td>
+                                <td>평균 50,000원 ~ 100,000원</td>
+                                <td>부분 치료 시 5만원~10만원, 전체 치료 시 10만원 이상</td>
+                            </tr>
+                            <tr>
+                                <td>치료 범위</td>
+                                <td>치아 윗부분 및 잇몸 경계부 치석 제거</td>
+                                <td>치아 윗부분 치석 제거 (심미 스케일링 포함)</td>
+                                <td>잇몸 속 깊은 치주 포켓 내 치석 및 염증 제거</td>
+                            </tr>
+                            <tr>
+                                <td>주의사항</td>
+                                <td>진료 일자를 잘 확인하여 매년 1회 혜택을 놓치지 않아야 합니다.</td>
+                                <td>치과별 가격 차이가 크므로, 사전 견적 확인이 필수입니다.</td>
+                                <td>마취 후 진행될 수 있으며, 치료 기간이 길어질 수 있습니다.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>3. 스케일링과 잇몸 치료 (치주 치료)의 차이점</h3>
+                <p>많은 분들이 스케일링과 잇몸 치료를 혼동합니다. 스케일링은 치아 겉에 붙은 치석을 제거하는 예방적인 처치입니다. 하지만 치주 질환이 심해져 잇몸 속(치주낭) 깊은 곳까지 염증과 치석이 침투하면 '치주 치료'가 필요합니다. 이는 스케일링보다 깊은 곳을 청소하며, 마취가 필요한 경우가 많습니다. 비급여 스케일링 비용을 절약하려다가 시기를 놓쳐 더 복잡하고 비싼 잇몸 치료를 받게 되는 경우가 있으니 주의해야 합니다.</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <h2>스케일링 비용 절약하는 팁과 치과 선택 기준</h2>
+                <p>스케일링은 '싼 곳'을 찾는 것보다 '잘하는 곳'을 찾는 것이 중요합니다. 단순히 저렴한 가격만으로 치과를 선택했다가 미흡한 스케일링으로 인해 잇몸 건강을 해칠 수 있습니다. 하지만 똑똑하게 절약할 수 있는 방법도 있습니다.</p>
+
+                <h3>1. 연 1회 보험 혜택 활용하기</h3>
+                <p>가장 중요한 절약 팁입니다. 건강보험공단은 매년 1월 1일부터 12월 31일까지 연 1회 스케일링 보험 혜택을 제공합니다. 12월에 해당 연도의 혜택을 받지 못했다면, 이듬해로 넘어가지 않고 소멸되니 기간 내에 꼭 이용해야 합니다. 특히 내돈내산 후기를 찾아보면, 보험 적용 여부에 따라 비용 차이가 매우 큽니다.</p>
+
+                <h3>2. 비보험 스케일링 가격 비교하기</h3>
+                <p>보험 횟수를 모두 사용했거나 미용 목적으로 스케일링을 받는 경우, 치과마다 비보험 스케일링 가격이 크게 다릅니다. 잇몸 건강 관리가 중요한 분들은 6개월에 한 번씩 스케일링을 받는 것을 추천합니다. 이 경우, 연 2회 중 1회는 보험, 1회는 비보험으로 진행됩니다. 비보험 가격이 저렴한 곳을 찾거나, 정기 검진 시 할인 혜택을 제공하는 치과를 비교해보세요.</p>
+
+                <h3>3. 치과 선택 시 '잇몸 치료 전문의' 확인하기</h3>
+                <p>스케일링은 단순히 치아를 닦는 것이 아니라, 잇몸 건강을 위한 치료입니다. 심각한 치주 질환이 의심되는 경우, 치주과 전문의가 상주하는 치과를 선택하면 보다 전문적인 진단과 치료를 받을 수 있습니다. 스케일링 후 통증이나 시린 증상이 나타날 수 있으므로, 숙련된 치과 의사를 선택하는 것이 중요합니다.</p>
+
+                <h3>4. 스케일링 시 통증 완화 방법</h3>
+                <p>스케일링 시 통증을 걱정하는 분들이 많습니다. 치석이 많을수록, 잇몸에 염증이 심할수록 통증은 커집니다. 따라서 정기적으로 스케일링을 받아 치석을 미리 제거하면 통증을 줄일 수 있습니다. 치과에 따라 마취 연고를 바르거나 수면 마취를 진행하기도 하지만, 일반적인 스케일링은 국소 마취 없이 진행됩니다. 잇몸이 약한 분들은 미리 치과에 통증 완화를 요청할 수 있습니다.</p>
+
+                <div class="table-container">
+                    <h3>비용 절감을 위한 스케일링 Q&A</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Q.</th>
+                                <th>A.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>스케일링 주기(기간)는 몇 개월이 적당한가요?</td>
+                                <td>보통 6개월~1년에 한 번을 권장합니다. 치석이 잘 쌓이는 체질이라면 3~6개월에 한 번씩 검진을 받는 것이 좋습니다.</td>
+                            </tr>
+                            <tr>
+                                <td>어린이 스케일링도 보험 적용이 되나요?</td>
+                                <td>만 19세 미만 아동은 보험 스케일링이 적용되지 않습니다. 하지만 잇몸 질환을 동반한 치아 우식증 등 치료 목적으로 진행하는 경우 보험 적용이 될 수 있습니다. (정확한 금액은 치과에 문의)</td>
+                            </tr>
+                            <tr>
+                                <td>비보험 스케일링의 장점과 단점은 무엇인가요?</td>
+                                <td>장점: 횟수 제한 없이 필요할 때마다 받을 수 있고, 치과 선택 폭이 넓습니다. 단점: 가격이 비싸고 치과마다 편차가 큽니다.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <h2>자주 묻는 질문 (FAQ)</h2>
+
+                <div class="faq-item">
+                    <h3>스케일링 후 시린 증상이 나타나나요?</h3>
+                    <p>치석이 제거되면 치아 뿌리가 노출되면서 일시적으로 시린 증상이 나타날 수 있습니다. 이는 자연스러운 현상이며, 보통 며칠 내에 사라집니다. 시린 증상이 지속된다면 치과에 문의하여 추가적인 시린 이 치료(시린 이 연고 도포)를 받을 수 있습니다.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>스케일링을 하면 치아가 약해지거나 벌어지나요?</h3>
+                    <p>치과 스케일링은 치아 표면의 치석을 제거하는 것이지, 치아를 손상시키지 않습니다. 치석이 오랫동안 쌓여 잇몸이 내려앉았을 경우, 치석이 제거되면서 치아 사이 공간이 드러나 치아가 벌어진 것처럼 느껴질 수 있습니다. 이는 치아 건강을 되찾는 과정입니다.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>치과에서 권유하는 추가 치료, 꼭 받아야 하나요?</h3>
+                    <p>스케일링 후 잇몸 속 깊은 치주염이 발견될 경우, 치과에서는 추가적인 잇몸 치료를 권유할 수 있습니다. 스케일링만으로는 깊은 치석이 제거되지 않기 때문입니다. 정확한 진단을 위해 X-ray 촬영 및 검진 결과를 꼼꼼히 확인하고, 필요한 경우 다른 치과에서 2차 진단을 받는 것도 좋은 방법입니다. 내돈내산 후기를 참고하여 과잉 진료가 없는 치과를 찾는 것이 중요합니다.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <h2>신뢰할 수 있는 외부 자료 및 참고 링크</h2>
+                <p>스케일링 및 치주 질환에 대한 공인된 정보는 다음 자료들을 참고하여 확인할 수 있습니다.</p>
+                <ul>
+                    <li><a href="https://www.hira.or.kr/main.do" target="_blank" rel="noopener">건강보험심사평가원 (HIRA)</a> - 건강보험 적용 기준 및 수가 확인 가능</li>
+                    <li><a href="https://www.nhis.or.kr/" target="_blank" rel="noopener">국민건강보험공단</a> - 스케일링 보험 혜택 및 치주 질환 관련 정보</li>
+                    <li><a href="https://www.kdental.or.kr/main" target="_blank" rel="noopener">대한치과의사협회 (KDA)</a> - 치과 질환 정보 및 치과 전문가 정보</li>
+                    <li><a href="https://namu.wiki/w/%EC%8A%A4%EC%BC%80%EC%9D%BC%EB%A7%81" target="_blank" rel="noopener">나무위키 - 스케일링</a> - 일반적인 스케일링 정보 및 상식</li>
+                    <li><a href="https://www.mohw.go.kr/react/index.jsp" target="_blank" rel="noopener">보건복지부 (Ministry of Health and Welfare)</a> - 구강 보건 정책 및 치주 질환 통계</li>
+                </ul>
+            </div>
+        </section>
+
     </main>
-  </body>
-</html>
+
+    <script>
+        // FAQ 토글 기능
+        document.querySelectorAll('.faq-item h3').forEach(item => {
+            item.addEventListener('click', event => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+    </script>
+
+
+  
